@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+    #text{
+      border:2px solid #0080a8;
+      text-align: center;
+      background:#0080a8;
+      color:#FFFFFF;
+      font-family: sans-serif;
+      position:absolute;
+      bottom:10px;
+      width: 100%;
+      padding:2% 0;
+      font-size: 24px;
+    }
+    button{
+      background:#ffd700;
+      border-radius: 5px;
+      padding:8px 12px;
+      font-size: 18px;
+    }
+  </style>
+<script>
+function setCookie(cname,cvalue,exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires=" + d.toGMTString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  var user=getCookie("username");
+  if (user != "") {
+    // alert("Welcome again " + user);
+    document.getElementById("text").style.display = "none";
+  } else {
+     setCookie("username", user, 30);
+     // user = prompt("Please enter your name:","");
+     // if (user != "" && user != null) {
+     //   setCookie("username", user, 30);
+     // }
+  }
+}
+</script>
+</head>
+
+<body>
+  
+  <div id = "text">
+    <span>This website uses cookies as well as similar tools and technologies to understand visitors' experiences. By continuing to use this website, you consent to Wiley's usage of cookies and similar technologies, in accordance with the </span>
+    <span><a href="">Wiley's cookie policy.</a></span>
+
+    <button onclick="checkCookie()">Got it!</button> 
+  </div>
+</body>
+
+</html>
